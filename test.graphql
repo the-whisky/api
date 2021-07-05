@@ -1,0 +1,160 @@
+enum Currency {
+  USD # $
+  EUR # €
+  GBP # £
+  JPY # ¥
+  KRW # ₩
+}
+
+interface Price {
+  currency: Currency!
+  value: Int!
+}
+
+enum Country {
+  Scotch # 스카치 위스키
+  Irish # 아이리시 위스키
+  American #아메리칸 위스키
+  Canadian # 캐나디안 위스키
+  Japanese # 재패니스 위스키
+}
+
+enum ScotchCategory {
+  Single_Malt_Whisky # 싱글 몰트 위스키
+  Single_Grain_Whisky # 싱글 그레인 위스키
+  Blended_Malt_Whisky # 블렌디드 몰트 위스키
+  Blended_Grain_Whisky # 블렌디드 그레인 위스키
+  Blended_Whisky # 블랜디드 위스키
+}
+
+enum ScotchArea {
+  Lowland # 로우랜드
+  Speyside # 스페이사이드
+  HighLands # 하이랜드
+  TheIslands # 아일랜드
+  Campbeltown # 캠벨타운
+  Islay # 아일레이
+}
+
+interface Whisky {
+  country: Country! # 생산지
+  name: String! # 제품명
+  flavor: String! # 풍미
+  episode: String! # 에피소드
+  alcohol: Float! # 알코올 도수
+  volume: Int! # 용량 ml
+  price: Price! # 가격
+}
+
+enum Cast {
+  Bourbon_Casks
+  Oloroso_Sherry_Casks
+  Pedro_Ximenez_Casks
+  Fine_Wine_Casks
+}
+
+type ScotchWhisky implements Whisky {
+  category: ScotchCategory! # 카테고리
+  area: ScotchArea! # 생산지역
+  distillery: String! # 증류소
+  water: String! # 양조수
+  cast: Cast! # 주 숙성 통
+  keyMolt: [String!] # 키 몰트
+  # 소유자
+  country: Country! # 생산지
+  name: String! # 제품명
+  flavor: String! # 풍미
+  episode: String! # 에피소드
+  alcohol: Float! # 알코올 도수
+  volume: Int! # 용량 ml
+  price: Price! # 가격
+}
+
+enum IrishCategory {
+  # 퓨어 포트 스틸 위스키
+  # 몰트 위스키
+  # 그레인 위스키
+  # 블랜디드 위스키
+}
+
+type IrishWhisky implements Whisky {
+  category: IrishCategory!
+  # 소유자
+  country: Country! # 생산지
+  name: String! # 제품명
+  flavor: String! # 풍미
+  episode: String! # 에피소드
+  alcohol: Float! # 알코올 도수
+  volume: Int! # 용량 ml
+  price: Price! # 가격
+}
+
+enum AmericanCategory {
+  # 버번 위스키
+  # 테네시 위스키
+  # 라이 위스키
+  # 휘트 위스키
+  # 몰트 위스키
+  # 라이몰트 위스키
+  # 콘 위스키
+  # 블래디드 위스키
+}
+
+type AmericanWhisky implements Whisky {
+  category: AmericanCategory!
+  # 소유자
+  country: Country! # 생산지
+  name: String! # 제품명
+  flavor: String! # 풍미
+  episode: String! # 에피소드
+  alcohol: Float! # 알코올 도수
+  volume: Int! # 용량 ml
+  price: Price! # 가격
+}
+
+enum CanadianCategory {
+  # 버번 위스키
+  # 테네시 위스키
+  # 라이 위스키
+  # 휘트 위스키
+  # 몰트 위스키
+  # 라이몰트 위스키
+  # 콘 위스키
+  # 블래디드 위스키
+}
+
+type CanadianWhisky implements Whisky {
+  category: CanadianCategory!
+  # 소유자
+  country: Country! # 생산지
+  name: String! # 제품명
+  flavor: String! # 풍미
+  episode: String! # 에피소드
+  alcohol: Float! # 알코올 도수
+  volume: Int! # 용량 ml
+  price: Price! # 가격
+}
+
+enum JapaneseCategory {
+  Single_Malt_Whisky # 싱글 몰트 위스키
+  Single_Grain_Whisky # 싱글 그레인 위스키
+  Blended_Malt_Whisky # 블렌디드 몰트 위스키
+  Single_Cask_Whisky # 싱글 캐스크 위스키
+  Blended_Whisky # 블랜디드 위스키
+}
+
+type JapaneseWhisky implements Whisky {
+  category: JapaneseCategory!
+  # 제조원
+  country: Country! # 생산지
+  name: String! # 제품명
+  flavor: String! # 풍미
+  episode: String! # 에피소드
+  alcohol: Float! # 알코올 도수
+  volume: Int! # 용량 ml
+  price: Price! # 가격
+}
+
+type Query {
+  whisky: [Whisky!]!
+}
