@@ -13,6 +13,15 @@ type Whisky {
   price: Int! # 가격 (원)
   createdAt: DateTime!
   updatedAt: DateTime!
+  editor: User!
+}
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  avatar: String
+  whiskies: [Whisky!]!
 }
 
 type Query {
@@ -21,6 +30,7 @@ type Query {
 }
 
 type Mutation {
+
   newWhisky(
     name: String!
     country: String!
@@ -28,6 +38,7 @@ type Mutation {
     volume: Int!
     price: Int!
   ): Whisky
+
   updateWhisky(
     id: ID!
     name: String!
@@ -36,9 +47,22 @@ type Mutation {
     volume: Int!
     price: Int!
   ): Whisky
+
   deleteWhisky(
     id: ID!
   ): Boolean!
+
+  signUp(
+    username: String!
+    email: String!
+    password: String!
+  ): String!
+
+  signIn(
+    username: String
+    email: String
+    password: String!
+  )
 }
 `;
 
